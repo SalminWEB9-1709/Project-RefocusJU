@@ -1,0 +1,54 @@
+Step 1: Environment & Library Setup
+Before writing any code, you had to install the necessary frameworks to handle window tracking, notifications, and the interface.
+
+Command:
+pip install pygetwindow plyer tk
+
+pygetwindow: Used to identify which application window is currently active.
+
+plyer: Handles the Windows/macOS desktop notifications.
+
+tkinter: The built-in Python framework for the GUI and the "Distraction" popup.
+
+Step 2: Define Logic & Categories
+You started by defining what the script should look for. In main.py, you set up lists for productive and distracting apps:
+
+Python
+PRODUCTIVE = ["code", "vscode", "docs", "notepad", "slack"]
+DISTRACTING = ["youtube", "facebook", "instagram", "tiktok"]
+STUDY_KEYWORDS = ["study", "lecture", "tutorial", "coding"]
+Then, you wrote the Classify Function to check the active window title against these lists to determine if the user is "Productive," "Distracting," or "Neutral".
+
+Step 3: Create the GUI (Tkinter)
+Next, you built the visual dashboard so the user can see their progress in real-time.
+
+Main Window: Created using root = tk.Tk().
+
+Labels: Added app_label, status_label, and score_label to display the current app name and the user's focus score.
+
+Step 4: The Tracking Loop & Threading
+This is the core engine. Since the tracker needs to run constantly without freezing the GUI, you put it in a Thread.
+
+Polling: Every 1 second, it gets the active window title using gw.getActiveWindow().
+
+Duration Calculation: It subtracts start_time from current_time to see how long you've been in that window.
+
+Scoring:
+
+Productive: score += 10 for every 10 seconds.
+
+Distracted: score -= 5 for every 10 seconds.
+
+Step 5: The Intervention System
+To actually stop distractions, you added logic inside the loop to monitor elapsed time:
+
+Warning: If elapsed > 20 seconds, trigger notification.notify.
+
+Block: If elapsed >= 40 seconds, show the red popup and call window.minimize() to force the user off the distracting app.
+
+Step 6: Data Persistence (JSON)
+Finally, you ensured progress isn't lost.
+
+save_data(): When the window is closed, it takes the focus_time, distract_time, and log and writes them into refocus_data.json.
+
+on_close: You linked the WM_DELETE_WINDOW protocol to this save function so it happens automatically.

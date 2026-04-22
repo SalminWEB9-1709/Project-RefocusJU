@@ -1,0 +1,43 @@
+{
+    "focus_time": 1.0,
+    "distract_time": 51.3,
+    "score": -20,
+    "sessions": [
+        {
+            "app": null,
+            "category": "neutral",
+            "duration": 0.1,
+            "time": "2026-04-21 07:14:40.526107"
+        },
+        {
+            "app": "main.py - Refocu - Visual Studio Code",
+            "category": "productive",
+            "duration": 1.0,
+            "time": "2026-04-21 07:14:41.560447"
+        },
+        {
+            "app": "Refocus Tracker",
+            "category": "neutral",
+            "duration": 15.1,
+            "time": "2026-04-21 07:14:56.626041"
+        },
+        {
+            "app": "Facebook - Google Chrome",
+            "category": "distracting",
+            "duration": 37.2,
+            "time": "2026-04-21 07:15:33.827226"
+        },
+        {
+            "app": "NotebookLM + Gemini Will Create Stunning AI Slides for FREE - YouTube - Google Chrome",
+            "category": "distracting",
+            "duration": 14.1,
+            "time": "2026-04-21 07:15:47.920918"
+        },
+        {
+            "app": "Unknown",
+            "category": "neutral",
+            "duration": 1.0,
+            "time": "2026-04-21 07:15:48.923678"
+        }
+    ]
+}
