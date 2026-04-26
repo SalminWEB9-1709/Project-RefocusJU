@@ -6,7 +6,7 @@ import tkinter as tk
 from datetime import datetime
 from plyer import notification
 
-# ================= SETTINGS ================= #
+
 PRODUCTIVE = ["code", "vscode", "docs", "notepad", "notebookmla", "slack", "email"]
 
 DISTRACTING = ["youtube", "facebook", "instagram", "tiktok", "whatsapp", "twitter","pinterest"]
@@ -21,7 +21,7 @@ BLOCK_TIME = 40
 
 DATA_FILE = "refocus_data.json"
 
-# ================= STATE ================= #
+
 current_window = None
 start_time = time.time()
 
@@ -32,7 +32,7 @@ score = 0
 distract_start = None
 log = []
 
-# ================= FUNCTIONS ================= #
+
 def classify(title):
     title = title.lower()
 
@@ -71,7 +71,7 @@ def save_data():
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
-# ================= POPUP ================= #
+
 def show_popup(app_name):
     popup = tk.Toplevel()
     popup.title("Distracted!")
@@ -89,7 +89,6 @@ def show_popup(app_name):
 
     popup.after(3000, popup.destroy)
 
-# ================= GUI ================= #
 root = tk.Tk()
 root.title("Refocus Tracker")
 root.geometry("350x250")
@@ -106,7 +105,7 @@ time_label.pack(pady=5)
 score_label = tk.Label(root, text="Score: 0", font=("Arial", 12))
 score_label.pack(pady=5)
 
-# ================= TRACKER LOOP ================= #
+
 def tracker_loop():
     global current_window, start_time
     global focus_time, distract_time, score
@@ -141,10 +140,10 @@ def tracker_loop():
             current_window = title
             start_time = time.time()
 
-        # ===== Current Category ===== #
+       
         current_category = classify(title)
 
-        # ================= DISTRACTION SYSTEM (ONLY HERE) ================= #
+      
         if current_category == "distracting":
 
             if distract_start is None:
@@ -176,10 +175,10 @@ def tracker_loop():
                 distract_start = time.time()
 
         else:
-            #IMPORTANT: reset everything so NO notifications happen in neutral/productive
+      
             distract_start = None
 
-        # ================= GUI UPDATE ================= #
+       
         app_label.config(text=f"App: {title}")
 
         status_label.config(
@@ -197,10 +196,9 @@ def tracker_loop():
 
         time.sleep(1)
 
-# ================= THREAD ================= #
 threading.Thread(target=tracker_loop, daemon=True).start()
 
-# ================= CLOSE SAVE ================= #
+
 
 def on_close():
     save_data()
@@ -208,5 +206,5 @@ def on_close():
 
 root.protocol("WM_DELETE_WINDOW", on_close)
 
-# ================= RUN ================= #
+
 root.mainloop()
