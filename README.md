@@ -8,6 +8,7 @@ The Refocus Tracker is an automated productivity management system designed to m
 It functions as a background supervisor that categorizes user activity and intervenes when focus wavers.
 
 How It Works: Step-by-Step
+
 1. Environmental Setup
 The project relies on three core frameworks: PyGetWindow for active window detection, Plyer for system-level notifications,
 and Tkinter for the graphical user interface. These are integrated within a Python environment to allow for real-time monitoring.
